@@ -1,0 +1,22 @@
+.customerssay {
+    .sub-title {
+        grid-column: 1/13;
+        justify-self: center;
+    }
+
+    .review {
+        grid-column: span 3;
+        h3::before {
+            content: "Rating ";
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--br-small);
+            vertical-align: middle;
+            margin: 5px 5px 5px 0;
+            box-shadow: 0 0 1px #333333;
+        }
+    }
+}

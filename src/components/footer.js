@@ -1,6 +1,8 @@
-import logo from './images/little_lemon_logo_v.png';
+import './footer.css';
+import logo from '../images/little_lemon_logo_v.png';
+
 const Footer = () => {
-    return <footer>
+    return <footer className='container-grid'>
         <img className='footer-logo' src={logo} alt="logo" />
         <h3 className='section-title'>Doormat Navigation</h3>
         <ul>

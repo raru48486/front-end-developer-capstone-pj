@@ -1,0 +1,14 @@
+.specials {
+    .sub-title {
+        grid-column: 1/8;
+    }
+
+    button:first-of-type {
+        grid-column: 8/13;
+        justify-self: end;
+    }
+
+    .card {
+        grid-column: span 4;
+    }
+}

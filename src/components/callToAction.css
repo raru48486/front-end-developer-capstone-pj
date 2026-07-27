@@ -1,0 +1,32 @@
+header {
+    background-color: var(--color-primary-1);
+    img {
+        grid-column: 7/13;
+        grid-row: 1/5;
+        width: calc(min(30vw, 30vh));
+        height: calc(min(30vw, 30vh));
+        object-fit: cover;
+        align-self: center;
+        justify-self: end;
+        border-radius: var(--br-large);
+    }
+    h1 {
+        grid-column: 1/6;
+        grid-row: 1;
+        color:var(--color-primary-2);
+    }
+    h2 {
+        grid-column: 1/6;
+        grid-row: 2;
+        color:var(--color-highlight-1);
+    }
+    p {
+        grid-column: 1/6;
+        grid-row: 3;
+        color:var(--color-highlight-1);
+    }
+    button {
+        grid-column: 1/6;
+        grid-row: 4;
+    }
+}

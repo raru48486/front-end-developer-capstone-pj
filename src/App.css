@@ -1,0 +1,102 @@
+:root {
+    font-family: 'Karla', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#root {
+    --color-primary-1: #495E57;
+    --color-primary-2: #F4CE14;
+    --color-secondary-1: #EE9972;
+    --color-secondary-2: #FBDABB;
+    --color-highlight-1: #EDEFEE;
+    --color-highlight-2: #333333;
+    --br-large: 16px;
+    --br-small: 8px;
+    --container-grid-gap: 16px;
+    --container-grid-padding: 16px;
+    --section-vpadding: 100px;
+}
+
+@media (max-width: 767px) {
+    .container-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--container-grid-gap);
+        padding: var(--container-grid-padding);
+    }
+}
+
+@media (min-width: 768px) {
+    .container-grid {
+        display: grid;
+        max-width: 1000px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: auto;
+        gap: var(--container-grid-gap);
+        padding: var(--container-grid-padding);
+        margin: 0 auto;
+        align-items: start;
+        justify-items: start;
+    }
+    main > section.container-grid {
+        padding-top: var(--section-vpadding);
+        padding-bottom: var(--section-vpadding);
+    }
+}
+
+.highlight-text {
+    font-weight: 600;
+}
+
+.card-title {
+    font-family: 'Markazi Text', Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: 700;
+    max-width: 65em;
+}
+
+.cat-bold {
+    font-weight: 1000;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 1000;
+    text-transform: uppercase;
+    appearance: none;
+}
+
+.lead-text {
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 90%;
+}
+
+.sub-title {
+    font-family: 'Markazi Text', Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    line-height: 90%;
+    font-style: normal;
+}
+
+.display-title {
+    font-family: 'Markazi Text', Georgia, 'Times New Roman', Times, serif;
+    font-size: 64px;
+    line-height: 90%;
+    font-style: normal;
+}
+
+button {
+    appearance: none;
+    background-color: var(--color-primary-2);
+    color: var(--color-highlight-2);
+    border-radius: var(--br-small);
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: var(--color-secondary-1);
+}
