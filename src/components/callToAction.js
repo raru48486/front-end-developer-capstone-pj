@@ -1,7 +1,12 @@
 import restauranfood from '../images/restauranfood.jpg';
 import './callToAction.css';
+import { useNavigate } from 'react-router-dom';
 
 const CallToAction = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/reservations");
+    };
     return (
         <header>
             <section className='container-grid'>
@@ -11,7 +16,7 @@ const CallToAction = () => {
                 <p className="lead-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <button>Reserve a table</button>
+                <button onClick={handleClick}>Reserve a table</button>
             </section>
         </header>
     );
