@@ -1,0 +1,22 @@
+.booking-form {
+    h2.sub-title {
+        grid-row: 1;
+        grid-column: 1/13;
+    }
+    form {
+        grid-row: 2;
+        grid-column: 1/13;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: var(--container-grid-gap);
+        padding: var(--container-grid-padding);
+        margin: 0 auto;
+    }
+
+    label {
+        grid-column: 1;
+    }
+    input,select,button {
+        grid-column: 2;
+    }
+}

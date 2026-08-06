@@ -1,5 +1,13 @@
+import BookingForm from "../components/bookingForm";
+import Footer from "../components/footer";
+
 const Reservations = () => {
-    return <h1>reservations</h1>;
+    return <>
+        <main>
+            <BookingForm/>
+        </main>
+        <Footer/>
+    </>;
 };
 
 export default Reservations;
