@@ -1,12 +1,18 @@
 import BookingForm from "../components/bookingForm";
 import Footer from "../components/footer";
 
-const Reservations = () => {
+const Main = () => {
     return <>
         <main>
-            <BookingForm/>
+            <BookingForm />
         </main>
-        <Footer/>
+    </>;
+};
+
+const Reservations = () => {
+    return <>
+        <Main />
+        <Footer />
     </>;
 };
 

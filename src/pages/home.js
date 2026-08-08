@@ -12,7 +12,7 @@ import reviewer2 from '../images/reviewers/reviewer2.png';
 import reviewer3 from '../images/reviewers/reviewer3.png';
 import reviewer4 from '../images/reviewers/reviewer4.png';
 
-const Home = () => {
+const Main = () => {
     const specials = [
         { img: greekSalad, name: "Greek salad", price: "$ 12.99", description: "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons." },
         { img: bruchetta, name: "Bruchetta", price: "$ 5.99", description: "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil." },
@@ -49,13 +49,19 @@ const Home = () => {
         }
     ];
     return <>
-        <CallToAction />
         <main>
             <Specials menus={specials} />
             <CustomersSay reviews={reviewers} />
-            <Chicago/>
+            <Chicago />
         </main>
-        <Footer/>
+    </>;
+};
+
+const Home = () => {
+    return <>
+        <CallToAction />
+        <Main />
+        <Footer />
     </>;
 };
 
