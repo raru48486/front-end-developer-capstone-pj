@@ -1,0 +1,19 @@
+.confirmed-booking {
+    .sub-title {
+        grid-column: 1/13;
+    }
+    .booking {
+        grid-column: 1/13;
+        justify-self: center;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: var(--container-grid-gap);
+
+        .field {
+            grid-column: 1;
+        }
+        .value {
+            grid-column: 2;
+        }
+    }
+}

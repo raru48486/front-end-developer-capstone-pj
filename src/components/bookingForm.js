@@ -1,23 +1,46 @@
 import './bookingForm.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { submitAPI } from '../api';
 
 const BookingForm = ({ availableTimes, setAvailableTimes }) => {
     const now = new Date();
+    const navigate = useNavigate();
 
     const [date, setDate] = useState(`${now.getFullYear()}-${now.getMonth().toString(10).padStart(2, "0")}-${now.getDate().toString(10).padStart(2, "0")}`);
     const [resTime, setResTime] = useState();
     const [numGuests, setNumGuests] = useState(1);
     const [occasion, setOccasion] = useState("Anniversary");
 
+    const handleResDateChange = (e) => {
+        setDate(e.target.value);
+        setAvailableTimes(new Date(e.target.value));
+    };
+
     const timeOptions = availableTimes.map((t, i) => {
         return <option key={i}>{t}</option>;
-    })
+    });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const state = {
+            date,
+            resTime,
+            numGuests,
+            occasion,
+        };
+        if (submitAPI(state)) {
+            navigate("/confirm", {
+                state
+            });
+        }
+    };
 
     return <section className='booking-form container-grid'>
         <h2 className='sub-title'>Reserve a Table</h2>
-        <form className="booking-form">
+        <form className="booking-form" onSubmit={onSubmit}>
             <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" value={date} onChange={(e) => { setDate(e.target.value); setAvailableTimes(e.target.value); }} />
+            <input type="date" id="res-date" value={date} onChange={handleResDateChange} />
             <label htmlFor="res-time">Choose time</label>
             <select id="res-time" value={resTime} onChange={(e) => setResTime(e.target.value)}>
                 {timeOptions}

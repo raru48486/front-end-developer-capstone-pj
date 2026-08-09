@@ -1,19 +1,12 @@
 import BookingForm from "../components/bookingForm";
-import Footer from "../components/footer";
 import { useReducer } from 'react';
+import { fetchAPI } from "../api";
 
-export const updateTimes = (state, action) => {
-    return state;
+export const updateTimes = (_, action) => {
+    return fetchAPI(action);
 };
 export const initializeTimes = () => {
-    return [
-        "17:00",
-        "18:00",
-        "19:00",
-        "20:00",
-        "21:00",
-        "22:00",
-    ];
+    return fetchAPI(new Date());
 }
 
 const Main = () => {
@@ -28,7 +21,6 @@ const Main = () => {
 const Reservations = () => {
     return <>
         <Main />
-        <Footer />
     </>;
 };
 
