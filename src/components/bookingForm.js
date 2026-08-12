@@ -52,7 +52,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
             <select id="occasion" onChange={(e) => setOccasion(e.target.value)} required>
                 {occationOptions}
             </select>
-            <button type="submit">Make Your reservation</button>
+            <button type="submit" aria-label="On Click">Make Your reservation</button>
         </form>
     </section>;
 };
