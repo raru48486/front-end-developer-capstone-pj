@@ -1,16 +1,16 @@
 import './bookingForm.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { submitAPI } from '../api';
 
-const BookingForm = ({ availableTimes, setAvailableTimes }) => {
+const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
     const now = new Date();
-    const navigate = useNavigate();
+    const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString(10).padStart(2, "0")}-${now.getDate().toString(10).padStart(2, "0")}`;
+    const occasions = ["Birthday", "Anniversary"];
 
-    const [date, setDate] = useState(`${now.getFullYear()}-${now.getMonth().toString(10).padStart(2, "0")}-${now.getDate().toString(10).padStart(2, "0")}`);
-    const [resTime, setResTime] = useState();
+    const [date, setDate] = useState(today);
+    const [resTime, setResTime] = useState(availableTimes[0]);
     const [numGuests, setNumGuests] = useState(1);
-    const [occasion, setOccasion] = useState("Anniversary");
+    const [occasion, setOccasion] = useState(occasions[0]);
 
     const handleResDateChange = (e) => {
         setDate(e.target.value);
@@ -18,10 +18,13 @@ const BookingForm = ({ availableTimes, setAvailableTimes }) => {
     };
 
     const timeOptions = availableTimes.map((t, i) => {
-        return <option key={i}>{t}</option>;
+        return <option key={i} value={t}>{t}</option>;
+    });
+    const occationOptions = occasions.map((o, i) => {
+        return <option key={i} value={o}>{o}</option>;
     });
 
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const state = {
             date,
@@ -30,27 +33,24 @@ const BookingForm = ({ availableTimes, setAvailableTimes }) => {
             occasion,
         };
         if (submitAPI(state)) {
-            navigate("/confirm", {
-                state
-            });
+            onSubmit(state);
         }
     };
 
     return <section className='booking-form container-grid'>
         <h2 className='sub-title'>Reserve a Table</h2>
-        <form className="booking-form" onSubmit={onSubmit}>
+        <form className="booking-form" onSubmit={handleSubmit}>
             <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" value={date} onChange={handleResDateChange} />
+            <input type="date" id="res-date" value={date} min={today} onChange={handleResDateChange} required />
             <label htmlFor="res-time">Choose time</label>
-            <select id="res-time" value={resTime} onChange={(e) => setResTime(e.target.value)}>
+            <select id="res-time" onChange={(e) => setResTime(e.target.value)} required>
                 {timeOptions}
             </select>
             <label htmlFor="guests">Number of guests</label>
             <input type="number" placeholder="1" min="1" max="10" id="guests" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} />
             <label htmlFor="occasion">Occasion</label>
-            <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
-                <option>Birthday</option>
-                <option>Anniversary</option>
+            <select id="occasion" onChange={(e) => setOccasion(e.target.value)} required>
+                {occationOptions}
             </select>
             <button type="submit">Make Your reservation</button>
         </form>
