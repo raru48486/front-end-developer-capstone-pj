@@ -2,8 +2,10 @@ import BookingForm from "../components/bookingForm";
 import { useReducer } from 'react';
 import { fetchAPI } from "../api";
 
-export const updateTimes = (_, action) => {
-    return fetchAPI(action);
+export const updateTimes = (_, { type, date }) => {
+    if (type === "UPDATE_TIMES") {
+        return fetchAPI(date);
+    }
 };
 export const initializeTimes = () => {
     return fetchAPI(new Date());

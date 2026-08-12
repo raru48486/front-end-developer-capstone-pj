@@ -1,6 +1,5 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "types": ["jest", "node", "@testing-library/jest-dom"]
+  "typeAcquisition": {
+    "include":["jest", "@testing-library/jest-dom"]
   }
 }

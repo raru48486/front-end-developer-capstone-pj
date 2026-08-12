@@ -14,7 +14,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes }) => {
 
     const handleResDateChange = (e) => {
         setDate(e.target.value);
-        setAvailableTimes(new Date(e.target.value));
+        setAvailableTimes({ type: "UPDATE_TIMES", date: new Date(e.target.value) });
     };
 
     const timeOptions = availableTimes.map((t, i) => {
