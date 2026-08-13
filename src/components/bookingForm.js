@@ -26,16 +26,20 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const state = {
-            date,
-            resTime,
-            numGuests,
-            occasion,
-        };
-        if (submitAPI(state)) {
-            onSubmit(state);
+        if (new Date(`${date} ${resTime}`).getTime() < new Date().getTime()) {
+            alert("Reservations cannot be made for dates in the past. Please select a future date.");
         } else {
-            alert("We encountered a server-side error while processing your reservation. Please try again later.");
+            const state = {
+                date,
+                resTime,
+                numGuests,
+                occasion,
+            };
+            if (submitAPI(state)) {
+                onSubmit(state);
+            } else {
+                alert("We encountered a server-side error while processing your reservation. Please try again later.");
+            }
         }
     };
 
