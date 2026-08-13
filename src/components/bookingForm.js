@@ -34,6 +34,8 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
         };
         if (submitAPI(state)) {
             onSubmit(state);
+        } else {
+            alert("We encountered a server-side error while processing your reservation. Please try again later.");
         }
     };
 
