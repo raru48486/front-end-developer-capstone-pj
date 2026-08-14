@@ -1,17 +1,21 @@
 import './bookingForm.css';
 import { useState } from 'react';
-import { submitAPI } from '../api';
+import { submitAPI } from '../api'; // Import API functions
 
 const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
+    // Get today's date in YYYY-MM-DD format
     const now = new Date();
     const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString(10).padStart(2, "0")}-${now.getDate().toString(10).padStart(2, "0")}`;
+    // Array of available occasions for the user to choose from
     const occasions = ["Birthday", "Anniversary"];
 
+    // State variables using useState hook to manage form input values:
     const [date, setDate] = useState(today);
-    const [resTime, setResTime] = useState(availableTimes[0]);
-    const [numGuests, setNumGuests] = useState(1);
-    const [occasion, setOccasion] = useState(occasions[0]);
+    const [resTime, setResTime] = useState(availableTimes[0]); // Default time selection
+    const [numGuests, setNumGuests] = useState(1); // Default number of guests
+    const [occasion, setOccasion] = useState(occasions[0]); // Default occasion selection
 
+    // Function to handle chanes in the selected date
     const handleResDateChange = (e) => {
         setDate(e.target.value);
         setAvailableTimes({ type: "UPDATE_TIMES", date: new Date(e.target.value) });
@@ -24,6 +28,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
         return <option key={i} value={o}>{o}</option>;
     });
 
+    // Function to handle form submit.
     const handleSubmit = (e) => {
         e.preventDefault();
         if (new Date(`${date} ${resTime}`).getTime() < new Date().getTime()) {

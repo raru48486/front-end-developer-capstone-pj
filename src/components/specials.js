@@ -1,5 +1,12 @@
 import "./specials.css";
 import Card from './card';
+
+/*
+ * The "Specials" component accepts an array of objects, where each object represents a menu item and contains
+ * properties for image URL, name, price, and description. It then iterates over this array to dynamically generate
+ * individual card elements, displaying the corresponding data for each item.
+ */
+
 /**
  * @param {{menus:{name:string,img:string,price:string,description:string}[]}} param0
  */

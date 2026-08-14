@@ -14,9 +14,12 @@ export const initializeTimes = () => {
 }
 
 const Main = () => {
+    // useNavigate hook to route BookingFrom to Confirm.
     const navigate = useNavigate();
+    // create reducer to manage available time.
     const [availableTimes, setAvailableTimes] = useReducer(updateTimes, null, initializeTimes);
 
+    // Function to handle submit
     const handleSubmit = (state) => {
         navigate("/confirm", {
             state
