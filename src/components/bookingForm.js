@@ -8,6 +8,8 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
     const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString(10).padStart(2, "0")}-${now.getDate().toString(10).padStart(2, "0")}`;
     // Array of available occasions for the user to choose from
     const occasions = ["Birthday", "Anniversary"];
+    const minGuests = 1;
+    const maxGuests = 10;
 
     // State variables using useState hook to manage form input values:
     const [date, setDate] = useState(today);
@@ -33,18 +35,22 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
         e.preventDefault();
         if (new Date(`${date} ${resTime}`).getTime() < new Date().getTime()) {
             alert("Reservations cannot be made for dates in the past. Please select a future date.");
+            return;
+        }
+        if (numGuests < minGuests || numGuests > maxGuests) {
+            alert("The maximum number of guests allowed for this reservation is 10.");
+            return;
+        }
+        const state = {
+            date,
+            resTime,
+            numGuests,
+            occasion,
+        };
+        if (submitAPI(state)) {
+            onSubmit(state);
         } else {
-            const state = {
-                date,
-                resTime,
-                numGuests,
-                occasion,
-            };
-            if (submitAPI(state)) {
-                onSubmit(state);
-            } else {
-                alert("We encountered a server-side error while processing your reservation. Please try again later.");
-            }
+            alert("We encountered a server-side error while processing your reservation. Please try again later.");
         }
     };
 
@@ -58,7 +64,7 @@ const BookingForm = ({ availableTimes, setAvailableTimes, onSubmit }) => {
                 {timeOptions}
             </select>
             <label htmlFor="guests">Number of guests</label>
-            <input type="number" placeholder="1" min="1" max="10" id="guests" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} />
+            <input type="number" placeholder={minGuests} min={minGuests} max={maxGuests} id="guests" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} />
             <label htmlFor="occasion">Occasion</label>
             <select id="occasion" onChange={(e) => setOccasion(e.target.value)} required>
                 {occationOptions}
